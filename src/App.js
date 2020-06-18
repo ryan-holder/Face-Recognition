@@ -7,6 +7,7 @@ import Register from "./components/Register/Register";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import "./App.css";
+require("dotenv").config();
 
 const particleOptions = {
   particles: {
@@ -29,7 +30,7 @@ const particleOptions = {
 };
 
 const app = new Clarifai.App({
-  apiKey: "178a88758d6e4d25a7668ddb61222d7c",
+  apiKey: process.env.REACT_APP_API_KEY,
 });
 
 class App extends React.Component {
