@@ -1,6 +1,5 @@
 import React from "react";
 import Particles from "react-particles-js";
-import Clarifai from "clarifai";
 import Navigation from "./components/Navigation/Navigation";
 import SignIn from "./components/SignIn/SignIn";
 import Register from "./components/Register/Register";
@@ -8,12 +7,6 @@ import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import Rank from "./components/Rank/Rank";
 import "./App.css";
-
-require("dotenv").config();
-
-const app = new Clarifai.App({
-  apiKey: process.env.REACT_APP_API_KEY,
-});
 
 const particleOptions = {
   particles: {
@@ -83,17 +76,17 @@ class App extends React.Component {
 
   onImageSubmit = (e) => {
     this.setState({ imageUrl: this.state.input });
-    app.models
-      .predict(
-        {
-          id: "a403429f2ddf4b49b307e318f00e528b",
-          version: "34ce21a40cc24b6b96ffee54aabff139",
-        },
-        this.state.input
-      )
+    fetch("https://arcane-cove-95793.herokuapp.com/imageurl", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        input: this.state.input,
+      }),
+    })
+      .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch("http://localhost:3000/image", {
+          fetch("https://arcane-cove-95793.herokuapp.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -103,7 +96,8 @@ class App extends React.Component {
             .then((response) => response.json())
             .then((count) => {
               this.setState(Object.assign(this.state.user, { entries: count }));
-            });
+            })
+            .catch(console.log);
         }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })

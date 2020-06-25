@@ -3,7 +3,7 @@ import "./ImageLinkForm.css";
 
 const ImageLinkForm = ({ onInputChange, onImageSubmit }) => {
 	return (
-		<div className="image-link-form mt4">
+		<div className="mt4">
 			<p className="f3">Does it have a face? Add an image and find out!</p>
 			<div className="center">
 				<div className="center form pa4 br3 shadow-5">

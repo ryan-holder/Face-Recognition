@@ -1,7 +1,6 @@
 import React from "react";
 
 const Navigation = ({ onRouteChange, isSignedIn }) => {
-	console.log(isSignedIn);
 	if (isSignedIn) {
 		return (
 			<nav style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -24,7 +23,7 @@ const Navigation = ({ onRouteChange, isSignedIn }) => {
 				</p>
 				<p
 					onClick={() => onRouteChange("register")}
-					className="f3 link dim black underline pa3 pointer"
+					className="f3 link dim black underline pa3 <pointer></pointer>"
 				>
 					Register
 				</p>

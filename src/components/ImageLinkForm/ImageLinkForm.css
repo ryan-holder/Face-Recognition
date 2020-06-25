@@ -1,9 +1,3 @@
-.image-link-form {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
 .form {
 	width: 700px;
 }
