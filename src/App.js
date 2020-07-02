@@ -74,6 +74,21 @@ class App extends React.Component {
     this.setState({ input: e.target.value });
   };
 
+  incrementEntries = () => {
+    fetch("https://arcane-cove-95793.herokuapp.com/image", {
+      method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: this.state.user.id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((count) => {
+        this.setState(Object.assign(this.state.user, { entries: count }));
+      })
+      .catch(console.log);
+  };
+
   onImageSubmit = (e) => {
     this.setState({ imageUrl: this.state.input });
     fetch("https://arcane-cove-95793.herokuapp.com/imageurl", {
@@ -85,19 +100,8 @@ class App extends React.Component {
     })
       .then((response) => response.json())
       .then((response) => {
-        if (response) {
-          fetch("https://arcane-cove-95793.herokuapp.com/image", {
-            method: "put",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              id: this.state.user.id,
-            }),
-          })
-            .then((response) => response.json())
-            .then((count) => {
-              this.setState(Object.assign(this.state.user, { entries: count }));
-            })
-            .catch(console.log);
+        if (response.outputs) {
+          this.incrementEntries();
         }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
