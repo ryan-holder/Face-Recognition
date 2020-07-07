@@ -69,6 +69,7 @@ class Register extends React.Component {
                   type="email"
                   name="email-address"
                   id="email-address"
+                  placeholder="Psst..."
                   onChange={this.onEmailChange}
                 />
               </div>
@@ -77,10 +78,11 @@ class Register extends React.Component {
                   Password
                 </label>
                 <input
-                  className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                   type="password"
                   name="password"
                   id="password"
+                  placeholder="Use a fake one"
                   onChange={this.onPasswordChange}
                 />
               </div>
