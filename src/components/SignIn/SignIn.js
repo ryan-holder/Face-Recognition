@@ -52,6 +52,7 @@ class Signin extends React.Component {
 									type="email"
 									name="email-address"
 									id="email-address"
+									placeholder="Psst, use made-up credentials"
 									onChange={this.onEmailChange}
 								/>
 							</div>
